@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Courtney’s Casa Amor</title>
+<style>
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #ff5f9e, #ff9966);
+  color:white;
+  text-align:center;
+  overflow-x:hidden;
+}
+section { padding:60px 20px; }
+
+button {
+  padding:15px 30px;
+  font-size:18px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+#enterBtn {
+  background:white;
+  color:#ff5f9e;
+}
+
+#enterBtn:hover { transform:scale(1.1); }
+
+#noBtn {
+  position:relative;
+  background:#222;
+  color:white;
+}
+
+#yesBtn {
+  background:#00ffcc;
+  color:black;
+}
+
+#yesBtn:hover { transform:scale(1.2); }
+
+.text-alert {
+  background:black;
+  padding:20px;
+  margin:30px auto;
+  max-width:500px;
+  border-radius:15px;
+}
+
+.hidden { display:none; }
+
+.countdown {
+  font-size:30px;
+  margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<!-- INTRO SCREEN -->
+<section id="intro">
+  <h1>🌴 Courtney’s Casa Amor 🌴</h1>
+  <p>Punta Cana | September 17–21</p>
+  <button id="enterBtn" onclick="startExperience()">Enter the Villa 💋</button>
+  <div id="countdown" class="countdown"></div>
+</section>
+
+<!-- MAIN CONTENT -->
+<section id="main" class="hidden">
+
+<h2>🔥 Welcome to the Villa 🔥</h2>
+<p>Islanders… your season has officially begun.</p>
+
+<div class="text-alert">📲 I’ve got a text! “Islanders, please review the coupling schedule.”</div>
+
+<h3>🍾 Itinerary</h3>
+<p>Day 1 – Arrival & Champagne<br>
+Day 2 – Poolside Chaos<br>
+Day 3 – Yacht or Beach Club<br>
+Day 4 – Final Recoupling<br>
+Day 5 – Farewell Villa</p>
+
+<div class="text-alert">📲 “Bad behavior will not be tolerated… unless it’s fun.”</div>
+
+<h3>👙 Packing List</h3>
+<p>Bikinis, heels, glam dress, airport set, sunglasses, body shimmer.</p>
+
+<h3>💄 Villa Rules</h3>
+<p>1. Protect the Bride.<br>
+2. No catching feelings.<br>
+3. What happens here stays here.</p>
+
+<div class="text-alert">📲 “Flights are filling up. Secure your seat.”</div>
+
+<h3>✈️ Flight Costs</h3>
+<p>Estimated: $450–$600 roundtrip.</p>
+
+<div class="text-alert">📲 “The villa has been secured… but only for committed islanders.”</div>
+
+<h3>🏠 Airbnb Payment</h3>
+<p>Deposit Due: TBD<br>
+Final Balance: TBD</p>
+
+<h3>⏳ Countdown to the Villa</h3>
+<div id="liveCountdown"></div>
+
+<br><br>
+<h3>Are you ready to recouple in Punta Cana?</h3>
+<button id="yesBtn" onclick="alert('PACK YOUR BAGS 🔥🌴')">YES</button>
+<button id="noBtn" onmouseover="moveNo()">No</button>
+
+</section>
+
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9c8f54.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+function startExperience() {
+  document.getElementById("music").play();
+  let count = 5;
+  let countdownEl = document.getElementById("countdown");
+
+  let interval = setInterval(() => {
+    countdownEl.innerHTML = "Islanders... " + count;
+    count--;
+    if (count < 0) {
+      clearInterval(interval);
+      document.getElementById("intro").classList.add("hidden");
+      document.getElementById("main").classList.remove("hidden");
+    }
+  },1000);
+}
+
+function moveNo() {
+  let btn = document.getElementById("noBtn");
+  btn.style.position="absolute";
+  btn.style.top=Math.random()*window.innerHeight+"px";
+  btn.style.left=Math.random()*window.innerWidth+"px";
+}
+
+let targetDate = new Date("September 17, 2026 00:00:00").getTime();
+let x = setInterval(function() {
+  let now = new Date().getTime();
+  let distance = targetDate - now;
+
+  let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  document.getElementById("liveCountdown").innerHTML =
+  days + " days until Casa Amor 🌴🔥";
+}, 1000);
+
+</script>
+
+</body>
+</html>

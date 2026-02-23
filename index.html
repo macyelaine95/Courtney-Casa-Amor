@@ -3,156 +3,243 @@
 <head>
 <meta charset="UTF-8">
 <title>Courtney’s Casa Amor</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Great+Vibes&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
 <style>
+
 body {
   margin:0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #ff5f9e, #ff9966);
+  background: radial-gradient(circle at top, #1a001f, #000000 70%);
   color:white;
-  text-align:center;
+  font-family: 'Montserrat', sans-serif;
   overflow-x:hidden;
 }
-section { padding:60px 20px; }
+
+h1,h2 {
+  font-family:'Playfair Display', serif;
+  text-align:center;
+  letter-spacing:2px;
+}
+
+.script {
+  font-family:'Great Vibes', cursive;
+  font-size:60px;
+  color:#ff4dd2;
+  text-shadow:0 0 20px #ff00cc;
+}
+
+section {
+  padding:60px 20px;
+  text-align:center;
+  animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(30px);}
+  to {opacity:1; transform:translateY(0);}
+}
 
 button {
-  padding:15px 30px;
-  font-size:18px;
+  padding:14px 30px;
   border:none;
   border-radius:30px;
+  font-size:16px;
   cursor:pointer;
   transition:0.3s;
 }
 
 #enterBtn {
-  background:white;
-  color:#ff5f9e;
+  background:#ff00cc;
+  color:white;
+  box-shadow:0 0 20px #ff00cc;
 }
 
-#enterBtn:hover { transform:scale(1.1); }
+#enterBtn:hover {
+  transform:scale(1.1);
+}
 
-#noBtn {
-  position:relative;
-  background:#222;
+nav {
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  padding:20px;
+  background:black;
+  position:sticky;
+  top:0;
+  z-index:999;
+}
+
+nav button {
+  background:none;
+  color:#ff4dd2;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+nav button:hover {
   color:white;
+  text-shadow:0 0 15px #ff00cc;
+}
+
+.tab {
+  display:none;
+  animation: fadeIn 1s ease;
+}
+
+.active {
+  display:block;
+}
+
+.text-alert {
+  background:#111;
+  margin:30px auto;
+  max-width:500px;
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 0 15px #ff00cc;
 }
 
 #yesBtn {
-  background:#00ffcc;
+  background:#00ffe1;
   color:black;
+  box-shadow:0 0 15px #00ffe1;
 }
 
-#yesBtn:hover { transform:scale(1.2); }
-
-.text-alert {
-  background:black;
-  padding:20px;
-  margin:30px auto;
-  max-width:500px;
-  border-radius:15px;
+#yesBtn:hover {
+  transform:scale(1.2);
 }
 
-.hidden { display:none; }
-
-.countdown {
-  font-size:30px;
-  margin-top:20px;
+#noBtn {
+  background:#222;
+  color:white;
+  position:relative;
 }
+
 </style>
 </head>
 <body>
 
-<!-- INTRO SCREEN -->
+<!-- INTRO -->
 <section id="intro">
-  <h1>🌴 Courtney’s Casa Amor 🌴</h1>
-  <p>Punta Cana | September 17–21</p>
-  <button id="enterBtn" onclick="startExperience()">Enter the Villa 💋</button>
-  <div id="countdown" class="countdown"></div>
+  <h1 class="script">Courtney’s Casa Amor</h1>
+  <h2>Punta Cana | September 17–21</h2>
+  <button id="enterBtn" onclick="enterVilla()">Enter the Villa 💋</button>
 </section>
 
-<!-- MAIN CONTENT -->
-<section id="main" class="hidden">
+<!-- MAIN SITE -->
+<div id="site" style="display:none;">
 
-<h2>🔥 Welcome to the Villa 🔥</h2>
-<p>Islanders… your season has officially begun.</p>
+<nav>
+  <button onclick="showTab('welcome')">Welcome</button>
+  <button onclick="showTab('itinerary')">Itinerary</button>
+  <button onclick="showTab('packing')">Packing</button>
+  <button onclick="showTab('rules')">Rules</button>
+  <button onclick="showTab('flights')">Flights</button>
+  <button onclick="showTab('payments')">Payments</button>
+</nav>
 
-<div class="text-alert">📲 I’ve got a text! “Islanders, please review the coupling schedule.”</div>
+<section id="welcome" class="tab active">
+  <h1>🌴 A New Bombshell Has Entered The Villa 🌴</h1>
+  <p>
+  Islanders… her name is Courtney.  
+  <br><br>
+  September 17–21, Punta Cana becomes our playground.  
+  Champagne mornings. Neon nights. Decisions we won’t explain later.  
+  <br><br>
+  Five days. One villa. No limits.
+  </p>
 
-<h3>🍾 Itinerary</h3>
-<p>Day 1 – Arrival & Champagne<br>
-Day 2 – Poolside Chaos<br>
-Day 3 – Yacht or Beach Club<br>
-Day 4 – Final Recoupling<br>
-Day 5 – Farewell Villa</p>
+  <div class="text-alert">
+  📲 I’ve got a text! “Islanders, pack your smallest bikinis. Casa Amor awaits.”
+  </div>
 
-<div class="text-alert">📲 “Bad behavior will not be tolerated… unless it’s fun.”</div>
-
-<h3>👙 Packing List</h3>
-<p>Bikinis, heels, glam dress, airport set, sunglasses, body shimmer.</p>
-
-<h3>💄 Villa Rules</h3>
-<p>1. Protect the Bride.<br>
-2. No catching feelings.<br>
-3. What happens here stays here.</p>
-
-<div class="text-alert">📲 “Flights are filling up. Secure your seat.”</div>
-
-<h3>✈️ Flight Costs</h3>
-<p>Estimated: $450–$600 roundtrip.</p>
-
-<div class="text-alert">📲 “The villa has been secured… but only for committed islanders.”</div>
-
-<h3>🏠 Airbnb Payment</h3>
-<p>Deposit Due: TBD<br>
-Final Balance: TBD</p>
-
-<h3>⏳ Countdown to the Villa</h3>
-<div id="liveCountdown"></div>
-
-<br><br>
-<h3>Are you ready to recouple in Punta Cana?</h3>
-<button id="yesBtn" onclick="alert('PACK YOUR BAGS 🔥🌴')">YES</button>
-<button id="noBtn" onmouseover="moveNo()">No</button>
-
+  <br>
+  <h2>Are you ready to recouple in paradise?</h2>
+  <button id="yesBtn" onclick="alert('PACK YOUR BAGS 🔥🌴')">YES</button>
+  <button id="noBtn" onmouseover="moveNo()">No</button>
 </section>
+
+<section id="itinerary" class="tab">
+  <h1>🍾 Coupling Schedule</h1>
+  <p>
+  Day 1 – Arrival & Champagne Toast<br><br>
+  Day 2 – Poolside Temptation<br><br>
+  Day 3 – Yacht or Beach Club Energy<br><br>
+  Day 4 – Final Recoupling Dinner<br><br>
+  Day 5 – Farewell to the Villa
+  </p>
+</section>
+
+<section id="packing" class="tab">
+  <h1>👙 Islander Essentials</h1>
+  <p>
+  3–4 bikinis (minimal preferred)<br>
+  Glam dinner dress<br>
+  Heels & sandals<br>
+  Sunglasses (big energy only)<br>
+  Body shimmer<br>
+  Airport slay set
+  </p>
+</section>
+
+<section id="rules" class="tab">
+  <h1>💄 Villa Rules</h1>
+  <p>
+  Protect the bride at all costs.<br>
+  Participation is mandatory.<br>
+  No catching feelings.<br>
+  What happens here stays here.
+  </p>
+</section>
+
+<section id="flights" class="tab">
+  <h1>✈️ Flight Info</h1>
+  <p>
+  Estimated: $450–$600 roundtrip.<br>
+  Arrive before 4PM on September 17.
+  </p>
+</section>
+
+<section id="payments" class="tab">
+  <h1>🏠 Villa Payments</h1>
+  <p>
+  Deposit: TBD<br>
+  Final Balance: TBD
+  </p>
+
+  <div class="text-alert">
+  📲 “The villa has been secured… only serious islanders proceed.”
+  </div>
+</section>
+
+</div>
 
 <audio id="music" loop>
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9c8f54.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/audio/2023/03/27/audio_8f2e74e65c.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 
-function startExperience() {
+function enterVilla(){
+  document.getElementById("intro").style.display="none";
+  document.getElementById("site").style.display="block";
   document.getElementById("music").play();
-  let count = 5;
-  let countdownEl = document.getElementById("countdown");
-
-  let interval = setInterval(() => {
-    countdownEl.innerHTML = "Islanders... " + count;
-    count--;
-    if (count < 0) {
-      clearInterval(interval);
-      document.getElementById("intro").classList.add("hidden");
-      document.getElementById("main").classList.remove("hidden");
-    }
-  },1000);
 }
 
-function moveNo() {
-  let btn = document.getElementById("noBtn");
+function showTab(tabId){
+  let tabs=document.querySelectorAll('.tab');
+  tabs.forEach(tab=>tab.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+}
+
+function moveNo(){
+  let btn=document.getElementById("noBtn");
   btn.style.position="absolute";
   btn.style.top=Math.random()*window.innerHeight+"px";
   btn.style.left=Math.random()*window.innerWidth+"px";
 }
-
-let targetDate = new Date("September 17, 2026 00:00:00").getTime();
-let x = setInterval(function() {
-  let now = new Date().getTime();
-  let distance = targetDate - now;
-
-  let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  document.getElementById("liveCountdown").innerHTML =
-  days + " days until Casa Amor 🌴🔥";
-}, 1000);
 
 </script>
 
